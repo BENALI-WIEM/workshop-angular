@@ -1,0 +1,120 @@
+
+
+<div class="grid">
+    <div class="residences">
+        <h2>Résidences</h2>
+    <table>
+        <tr>
+            <td>id</td>
+            <td>name</td>
+            <td>address</td>
+            <td>image</td>
+            <td>appartements</td>
+        </tr>
+        <tr 
+            *ngFor="let residence of residencesList; let index = index"
+        >
+            <td>{{ residence.id }}</td>
+            <td>{{ residence.name }}</td>
+            <td>{{ residence.address }}</td>
+            <td><img [src]="residence.image" width="80px" height="80px"></td>
+            <td>
+                <div *ngFor="let appartement of appartementsList">
+                    <div *ngIf="appartement.residence.id == residence.id"> 
+                        <li>{{ appartement.id }}</li>
+                    </div>
+                </div>
+                <div><button (click)="showOrElse(residence.id)">Afficher les apps</button></div>
+            </td>
+        </tr>
+    </table>
+    </div>
+    <div class="apps">
+        <div class="flex">
+            <h2>appartements</h2>
+            <p>
+                Je souhaite rendre la surface supérieure ou égale à<input type="text" [(ngModel)]="searchBySurface" (keyup)="filterAppartements()"></p>
+        </div>
+        <table *ngIf="appartements.length != 0; else noAppartementByFilterBlock">
+            <tr>
+                <td>terrasse</td>
+                <td>num appart</td>
+                <td>num étage</td>
+                <td>surface</td>
+                <td>surface terrasse</td>
+                <td>categorie</td>
+                <td>description</td>
+                <td>status</td>
+                <td></td>
+            </tr>
+            <tr 
+                *ngFor="let appartement of appartements; let index = index" 
+            >
+                    <td>{{ appartement.terrasse }}</td>
+                    <td>{{ appartement.numAppart }}</td>
+                    <td>{{ appartement.numEtage }}</td>
+                    <td>{{ appartement.surface }}</td>
+                    <td>{{ appartement.surfaceTerrasse }}</td>
+                    <td>{{ appartement.category }}</td>
+                    <td>{{ appartement.description }}</td>
+                    <td>{{ appartement.status }}</td>
+                    <td><button (click)="addToFavorite(appartement.id)">add to favorite</button></td>
+            </tr>
+        </table>
+        <ng-template #noAppartementByFilterBlock>
+            Il n'y a pas d'appartements avec une surface supérieure ou égale à {{ searchBySurface }}</ng-template>
+    </div>
+</div>
+
+<hr>
+
+<select name="" id="" [(ngModel)]="selectedOption">
+    <option *ngFor="let residence of residencesList; let index = index" [value]="residence.id">
+        {{ residence.name }}
+    </option>
+</select>
+
+<button (click)="showOrElse(selectedOption)">Cliquez sur moi</button>
+
+<div *ngFor="let app of apps">
+    <div>{{ app.description }} | <button (click)="addToFavorite(app.id)">Ajouter aux favoris</button></div>
+</div>
+
+<hr>
+
+<div *ngIf="favorites.length == 0; else elseBlock">
+    <h2>Il n'y a pas d'appartements mentionnés dans les favoris</h2>
+</div>
+
+
+<ng-template #elseBlock>
+    <div class="flex">
+        <h2>Appartements favoris</h2>
+        <button (click)="clearFavorites()">Effacer les favoris</button>
+    </div>
+    <table>
+        <tr>
+            <td>terrasse</td>
+            <td>num appart</td>
+            <td>num étage</td>
+            <td>surface</td>
+            <td>surface terrasse</td>
+            <td>categorie</td>
+            <td>description</td>
+            <td>status</td>
+            <td></td>
+        </tr>
+        <tr *ngFor="let fav of favorites; let index = index" >
+            <td>{{ fav.terrasse }}</td>
+            <td>{{ fav.numAppart }}</td>
+            <td>{{ fav.numEtage }}</td>
+            <td>{{ fav.surface }}</td>
+            <td>{{ fav.surfaceTerrasse }}</td>
+            <td>{{ fav.category }}</td>
+            <td>{{ fav.description }}</td>
+            <td>{{ fav.status }}</td>
+            <td><button (click)="removeFromFavorites(fav.id)">x</button></td>
+        </tr>
+    </table>
+</ng-template>
+

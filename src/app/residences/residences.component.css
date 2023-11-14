@@ -1,0 +1,23 @@
+table, tr, td {
+    border: 1px solid black; border-collapse: collapse;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-areas: "residences apps apps";
+}
+
+.residences {
+ grid-area: residences;
+}
+
+.apps {
+    grid-area: apps;
+    justify-self: center;
+}
