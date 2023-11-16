@@ -1,23 +1,51 @@
-table, tr, td {
-    border: 1px solid black; border-collapse: collapse;
-}
-
-.flex {
+body {
+    padding-top: 56px; /* Hauteur de la barre de navigation */
+  }
+  
+  .container {
+    max-width: 1550px;
+    margin-top: 20px;
+    
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .grid {
+    margin-top: 20px;
+  }
+  
+  .residences h2,
+  .apps h2,
+  .flex h2 {
+    margin-bottom: 20px;
+  }
+  
+  .flex {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-}
+    margin-bottom: 20px;
+  }
 
-.grid {
-    display: grid;
-    grid-template-areas: "residences apps apps";
-}
-
-.residences {
- grid-area: residences;
-}
-
-.apps {
-    grid-area: apps;
-    justify-self: center;
-}
+  .table th,
+  .table td {
+    text-align: center;
+    height: 50px;
+    font-weight: 100;
+	font-size:15px;
+	margin-bottom: 0px;
+  }
+  
+  .no-appartement-message {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .favorites-message {
+    margin-top: 20px;
+    text-align: center;
+  }
+  

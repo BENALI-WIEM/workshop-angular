@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { Residence } from '../Model/Residence';
 import { Appartement } from '../Model/Appartement';
-import { Observable, filter, of } from 'rxjs';
+import { Residence } from '../Model/Residence';
 
 @Component({
-  selector: 'app-residences',
-  templateUrl: './residences.component.html',
-  styleUrls: ['./residences.component.css']
+  selector: 'app-cardresidence',
+  templateUrl: './cardresidence.component.html',
+  styleUrls: ['./cardresidence.component.css']
 })
-export class ResidencesComponent {
+export class CardresidenceComponent {
 
   imageUrl: string = "/assets/images/"; 
   selectedOption! : number;
@@ -44,42 +43,4 @@ export class ResidencesComponent {
 
   ]
 
-  appartements: Appartement[] = this.appartementsList;
-
-
-  showOrElse(e: number) {
-    let aux: Appartement [] = [];
-    for(let i = 0; i<this.appartementsList.length; i++) {
-      if(this.appartementsList[i].residence.id == e) {
-        aux.push(this.appartementsList[i]);
-      }
-    }
-    this.apps = aux;
-  }
-
-  addToFavorite(appId : number){
-   
-    if(!this.favorites.some((app)=>app.id == appId))
-      for (let i = 0; i < this.appartementsList.length; i++) {
-        if(this.appartementsList[i].id == appId)
-          this.favorites.push(this.appartementsList[i]);
-      }
-    console.log(this.favorites);
-  }
-
-  removeFromFavorites(id: number) {
-      this.favorites = this.favorites.filter((app)=>app.id!=id);
-  }
-
-  clearFavorites() {
-    this.favorites = []
-  }
-
-  filterAppartements() {
-    if(this.searchBySurface == "")
-      this.appartements = this.appartementsList;
-    else
-      this.appartements = this.appartementsList.filter((app) => app.surface >= this.searchBySurface)
-  }
-  
 }

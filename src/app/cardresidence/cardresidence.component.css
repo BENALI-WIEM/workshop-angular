@@ -1,0 +1,41 @@
+:root {
+    --gradient: linear-gradient(to left top) 
+  }
+  
+  body {
+    background: #CAE6F1 !important;
+  }
+  
+  .card {
+    background: #CAE6F1;
+    border: 1px solid#2d6891;
+    color: #2d6891;
+    margin-bottom: 2rem;
+    
+  }
+  .card .img{
+   position: center;
+   
+  }
+  
+  .btn {
+    border: 5px solid;
+    border-color: #2d6891;
+    border-image-slice: 1;
+    background: var(--gradient) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    border-image-source:  var(--gradient) !important; 
+    text-decoration: none;
+    transition: all .4s ease;
+    -webkit-text-fill-color: #2d6891 !important;
+  }
+  
+  .btn:hover, .btn:focus {
+        background: var(--gradient) !important;
+    -webkit-background-clip: none !important;
+    -webkit-text-fill-color: #2d6891 !important;
+    border: 5px solid #fff !important; 
+    box-shadow:  #2d6891 1px 0 10px;
+    text-decoration: underline;
+  }
