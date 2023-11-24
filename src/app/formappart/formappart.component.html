@@ -1,0 +1,35 @@
+<div class="container">
+    <form [formGroup]="formAppart">
+        <div class="input-group">
+            <div class="input-group-prepend">
+            <span class="input-group-text">num appart</span>
+            </div>
+            <input type="text" aria-label="First name" name="numAppart" id="numAppart" formControlName="numAppart" class="form-control"> 
+           <div 
+                *ngIf="!numAppart.valid"
+                class="alert alert-danger"
+            >
+                this is an error
+            </div>
+        </div>
+
+        <div class="input-group">
+<span class="input-group-text">description</span>  
+      </div>
+        
+   <textarea type="text" aria-label="descrpition" id="description" name="description"  formControlName="description" class="form-control"> </textarea>
+<div *ngIf="description!.touched && description!.invalid" class="alert alert-danger">
+
+    description is required 
+</div>
+
+<div *ngIf="description?.errors?.['minlength']" class="alert-danger">
+    min length minLength 10
+</div>
+<div class="input-group">
+    <input type="submit" class="btn btn-small btn-primary" (click)="add()">
+</div>
+
+
+
+</form></div>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ShowappartComponent } from './showappart/showappart.component';
 import { CardresidenceComponent } from './cardresidence/cardresidence.component';
+import { FormappartComponent } from './formappart/formappart.component';
 
 
 
@@ -22,13 +23,14 @@ import { CardresidenceComponent } from './cardresidence/cardresidence.component'
     FooterComponent,
     PageNotFoundComponent,
     ShowappartComponent,
-
+    FormappartComponent,
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
