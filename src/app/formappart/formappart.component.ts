@@ -7,26 +7,24 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './formappart.component.html',
   styleUrls: ['./formappart.component.css']
 })
-export class FormappartComponent implements OnInit{
-  formAppart: FormGroup;
-  id: number;
-  constructor(private activeRoute: ActivatedRoute) {}
+export class FormappartComponent implements OnInit {
+appartform!:FormGroup
+  id=0
+constructor(private acr : ActivatedRoute){
 
-  ngOnInit(): void {
-    this.id = this.activeRoute.snapshot.params['id'];
-    this.formAppart = new FormGroup({
-      numAppart: new FormControl('', Validators.required),
-      description:new FormControl('', [Validators.required, Validators.minLength(10)])
-    });
-  }
-get numAppart(){
-  return this.formAppart.get('numAppart');
 }
-get description(){
-  return this.formAppart.get('description');
+
+ngOnInit(): void {
+  this.id=this.acr.snapshot.params['id']
+  this.appartform=new FormGroup({
+    numAppart:new FormControl('',Validators.required),
+    description:new FormControl('',[Validators.required, Validators.minLength(10)]),
+    residence:new FormControl(this.id,Validators.required),
+  })
 }
-  add(): void {
-    console.log(JSON.stringify(this.formAppart.value));
-    
-  }
+get numAppart(){return this.appartform.get('numAppart')}
+get description(){return this.appartform.get('description')}
+add(){
+  console.log("my form"+JSON.stringify(this.appartform.value))
+}
 }

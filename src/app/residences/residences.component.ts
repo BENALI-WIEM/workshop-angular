@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Residence } from '../Model/Residence';
-import { Appartement } from '../Model/Appartement';
-import { Observable, filter, of } from 'rxjs';
+import { Residence } from '../models/residence';
+import { Appartement } from '../models/appartement';
 
 @Component({
   selector: 'app-residences',
@@ -9,13 +8,9 @@ import { Observable, filter, of } from 'rxjs';
   styleUrls: ['./residences.component.css']
 })
 export class ResidencesComponent {
+imageUrl:string='/assets/images/'
 
-  imageUrl: string = "/assets/images/"; 
-  selectedOption! : number;
-  searchBySurface: any;
-  apps: Appartement [] = [];
-  favorites: Appartement []= [];
-
+  selectresidence!:number
   residencesList: Residence[]=[
     {id: 1, name: "Residence 1", address: "Address 1", image: this.imageUrl+"residence1.jpg"},
     {id: 2, name: "Residence 2", address: "Address 2", image: this.imageUrl+"residence2.jpg"},
@@ -24,18 +19,7 @@ export class ResidencesComponent {
 
   appartementsList: Appartement[]=
   [
-    {
-      id: 1, 
-      terrasse: "Terrasse 1", 
-      numAppart: 18, 
-      numEtage: 0, 
-      surface: 500, 
-      surfaceTerrasse: 250, 
-      category: "category 1", 
-      description: "appartement desc 1", 
-      status: true ,
-      residence: this.residencesList[0]
-    },
+    {id: 1, terrasse: "Terrasse 1", numAppart: 18, numEtage: 0, surface: 500, surfaceTerrasse: 250, category: "category 1", description: "appartement desc 1", status: true ,residence: this.residencesList[0]},
     {id: 2, terrasse: "Terrasse 2", numAppart: 21, numEtage: 5, surface: 250, surfaceTerrasse: 250, category: "category 2", description: "appartement desc 2", status: false ,residence: this.residencesList[0]},
     {id: 3, terrasse: "Terrasse 3", numAppart: 16, numEtage: 8, surface: 300, surfaceTerrasse: 250, category: "category 3", description: "appartement desc 3", status: true ,residence: this.residencesList[0]},
     {id: 4, terrasse: "Terrasse 4", numAppart: 16, numEtage: 8, surface: 600, surfaceTerrasse: 250, category: "category 4", description: "appartement desc 4", status: true ,residence: this.residencesList[1]},
@@ -44,42 +28,8 @@ export class ResidencesComponent {
 
   ]
 
-  appartements: Appartement[] = this.appartementsList;
+  show(residence:number){
 
-
-  showOrElse(e: number) {
-    let aux: Appartement [] = [];
-    for(let i = 0; i<this.appartementsList.length; i++) {
-      if(this.appartementsList[i].residence.id == e) {
-        aux.push(this.appartementsList[i]);
-      }
-    }
-    this.apps = aux;
   }
 
-  addToFavorite(appId : number){
-   
-    if(!this.favorites.some((app)=>app.id == appId))
-      for (let i = 0; i < this.appartementsList.length; i++) {
-        if(this.appartementsList[i].id == appId)
-          this.favorites.push(this.appartementsList[i]);
-      }
-    console.log(this.favorites);
-  }
-
-  removeFromFavorites(id: number) {
-      this.favorites = this.favorites.filter((app)=>app.id!=id);
-  }
-
-  clearFavorites() {
-    this.favorites = []
-  }
-
-  filterAppartements() {
-    if(this.searchBySurface == "")
-      this.appartements = this.appartementsList;
-    else
-      this.appartements = this.appartementsList.filter((app) => app.surface >= this.searchBySurface)
-  }
-  
 }

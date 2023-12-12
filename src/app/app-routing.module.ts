@@ -1,23 +1,29 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ResidencesComponent } from './residences/residences.component';
 import { CardresidenceComponent } from './cardresidence/cardresidence.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ShowappartComponent } from './showappart/showappart.component';
+import { FormappartComponent } from './formappart/formappart.component';
+import { ListAppartmentComponent } from './list-appartment/list-appartment.component';
 
-const routes: Routes = [
-
-  {path: "" , redirectTo : "home" , pathMatch:"full"},
-    {path:"home", component: ResidencesComponent},
-    {path:"card", component: CardresidenceComponent},
-    {path:"card/showappart/:id", component: ShowappartComponent},
-    {path:"**", component: PageNotFoundComponent},
-    
-  
-];
+const ROUTES:Routes=[
+  {path:'',redirectTo:"home",pathMatch:"full"},
+  {path:"home",component:ResidencesComponent},
+  {path:"card",component:CardresidenceComponent},
+  {path:"appartement/list",component:ListAppartmentComponent},
+  {path:"card/showappart/:id",component:ShowappartComponent},
+  {path:"card/showappart/:id/addappart/:id",component:FormappartComponent},
+ // {path:"**",component:PagenotfoundComponent}
+]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  declarations: [],
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(ROUTES),
+  ],
+  exports:[RouterModule]
 })
 export class AppRoutingModule { }

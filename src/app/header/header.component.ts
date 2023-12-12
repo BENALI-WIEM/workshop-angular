@@ -7,17 +7,12 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
-  v1 : string = "WIEM";
 
-  prop: boolean = false;
-
-  changeme = () => {
-    this.prop = true;
-  }
-
-  message : string = "";
-
-  showMessage() {
-    alert(this.message);
-  }
+  /* v1:string="naser"
+   message:string=''
+   prop:boolean=true
+   v2:string="bonjour"
+   show(){
+    this.message='ahmed'
+   }*/
 }

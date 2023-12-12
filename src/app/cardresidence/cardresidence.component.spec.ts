@@ -6,10 +6,12 @@ describe('CardresidenceComponent', () => {
   let component: CardresidenceComponent;
   let fixture: ComponentFixture<CardresidenceComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [CardresidenceComponent]
-    });
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ CardresidenceComponent ]
+    })
+    .compileComponents();
+
     fixture = TestBed.createComponent(CardresidenceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

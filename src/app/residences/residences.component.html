@@ -1,158 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <title>Mon Projet Bootstrap</title>
-
-  
-</head>
-<body>
-
-  <div class="container">
-    <div class="row">
-      <div >
-        <h2>Résidences</h2>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>name</th>
-              <th>address</th>
-              <th>image</th>
-              <th>appartements</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let residence of residencesList; let index = index">
-              <td>{{ residence.id }}</td>
-              <td>{{ residence.name }}</td>
-              <td>{{ residence.address }}</td>
-              <td><img [src]="residence.image" width="80px" height="80px"></td>
-              <td>
-                <div *ngFor="let appartement of appartementsList">
-                  <div *ngIf="appartement.residence.id == residence.id">
-                    <li>{{ appartement.id }}</li>
-                  </div>
-                </div>
-                <div><button class="btn btn-primary" (click)="showOrElse(residence.id)">Afficher les apps</button></div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div >
-        <div class="apps">
-          <div class="flex">
-            <h2>Appartements</h2>
-
-            <p>Je souhaite rendre la surface supérieure ou égale à<input type="text" [(ngModel)]="searchBySurface" (keyup)="filterAppartements()"></p>
+<p>residences list!</p>
+<table border="3">
+  <tr>
+    <td>id</td>
+    <td>name</td>
+    <td>address</td>
+    <td>image</td>
+    <td>appartement</td>
+  </tr>
+  <tr *ngFor="let r of residencesList; let i = index">
+    <td>{{ r.id }}</td>
+    <td>{{ r.name }}</td>
+    <td>{{ r.address }}</td>
+    <td><img [src]="r.image" width="100" height="100" /></td>
+    <td>
+      <ul>
+        <div *ngFor="let a of appartementsList; let i = index">
+          <div *ngIf="r == a.residence">
+            <li>
+              {{ a.category }}
+            </li>
           </div>
-          <table *ngIf="appartements.length != 0; else noAppartementByFilterBlock" class="table">
-            <thead>
-              <tr>
-                <th>terrasse</th>
-                <th>num appart</th>
-                <th>num étage</th>
-                <th>surface</th>
-                <th>surface terrasse</th>
-                <th>categorie</th>
-                <th>description</th>
-                <th>status</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let appartement of appartements; let index = index">
-                <td>{{ appartement.terrasse }}</td>
-                <td>{{ appartement.numAppart }}</td>
-                <td>{{ appartement.numEtage }}</td>
-                <td>{{ appartement.surface }}</td>
-                <td>{{ appartement.surfaceTerrasse }}</td>
-                <td>{{ appartement.category }}</td>
-                <td>{{ appartement.description }}</td>
-                <td>{{ appartement.status }}</td>
-                <td><button class="btn btn-success" (click)="addToFavorite(appartement.id)">Ajouter aux favoris</button></td>
-              </tr>
-            </tbody>
-          </table>
-          <ng-template #noAppartementByFilterBlock>
-            Il n'y a pas d'appartements avec une surface supérieure ou égale à {{ searchBySurface }}
-          </ng-template>
         </div>
-      </div>
-    </div>
+      </ul>
+    </td>
+  </tr>
+</table>
 
-    <hr>
+<select [(ngModel)]="selectresidence">
+  <option *ngFor="let r of residencesList; let i = index" [value]="r.id">
+    {{ r.name }}
+  </option>
+</select>
 
-    <div class="row">
-      <div class="col-md-6">
-        <select class="form-control" name="" id="" [(ngModel)]="selectedOption">
-          <option *ngFor="let residence of residencesList; let index = index" [value]="residence.id">
-            {{ residence.name }}
-          </option>
-        </select>
-        <button class="btn btn-info" (click)="showOrElse(selectedOption)">Cliquez sur moi</button>
-      </div>
-
-      <div class="col-md-6">
-        <div *ngFor="let app of apps">
-          <div>{{ app.description }} | <button class="btn btn-danger" (click)="addToFavorite(app.id)">Ajouter aux favoris</button></div>
-        </div>
-      </div>
-    </div>
-
-    <hr>
-
-    <div *ngIf="favorites.length == 0; else elseBlock">
-      <h2>Il n'y a pas d'appartements mentionnés dans les favoris</h2>
-    </div>
-
-    <ng-template #elseBlock>
-      <div class="row">
-        <div class="col-md-6">
-          <h2>Appartements favoris</h2>
-        </div>
-        <div class="col-md-6">
-          <button class="btn btn-warning" (click)="clearFavorites()">Effacer les favoris</button>
-        </div>
-      </div>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>terrasse</th>
-            <th>num appart</th>
-            <th>num étage</th>
-            <th>surface</th>
-            <th>surface terrasse</th>
-            <th>categorie</th>
-            <th>description</th>
-            <th>status</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let fav of favorites; let index = index">
-            <td>{{ fav.terrasse }}</td>
-            <td>{{ fav.numAppart }}</td>
-            <td>{{ fav.numEtage }}</td>
-            <td>{{ fav.surface }}</td>
-            <td>{{ fav.surfaceTerrasse }}</td>
-            <td>{{ fav.category }}</td>
-            <td>{{ fav.description }}</td>
-            <td>{{ fav.status }}</td>
-            <td><button class="btn btn-danger" (click)="removeFromFavorites(fav.id)">x</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </ng-template>
-
-  </div>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+<button (click)="show(selectresidence)">search</button>

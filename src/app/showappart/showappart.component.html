@@ -1,12 +1,15 @@
 <p>showappart works!</p>
-{{id}}
+{{ id }}
 
 <ul>
-<div *ngFor="let appartement of appartementsList; let i = index">
-    <div *ngIf="id == appartement.residence.id">
-        <li>
-            {{appartement.category}}
-        </li>
-            </div>
-</div>
+  <div *ngFor="let a of appartementsList; let i = index">
+    <div *ngIf="id == a.residence.id">
+      <li>
+        {{ a.category }}
+      </li>
+    </div>
+  </div>
 </ul>
+<a  class="btn btn-primary" [routerLink]="['addappart', id]"
+>Add apparment</a
+>

@@ -1,35 +1,44 @@
+<p>formappart works!</p>
+{{ id }}
+
 <div class="container">
-    <form [formGroup]="formAppart">
-        <div class="input-group">
-            <div class="input-group-prepend">
-            <span class="input-group-text">num appart</span>
-            </div>
-            <input type="text" aria-label="First name" name="numAppart" id="numAppart" formControlName="numAppart" class="form-control"> 
-           <div 
-                *ngIf="!numAppart.valid"
-                class="alert alert-danger"
-            >
-                this is an error
-            </div>
+<form [formGroup]="appartform">
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Num appart</span>
         </div>
-
-        <div class="input-group">
-<span class="input-group-text">description</span>  
+        <input type="text" aria-label="numAppart" id="numAppart" name="numAppart" formControlName="numAppart" class="form-control">
+       <div *ngIf="numAppart!.touched && numAppart!.invalid" class="alert alert-danger">
+        numAppart is required
+       </div>
       </div>
-        
-   <textarea type="text" aria-label="descrpition" id="description" name="description"  formControlName="description" class="form-control"> </textarea>
-<div *ngIf="description!.touched && description!.invalid" class="alert alert-danger">
-
-    description is required 
-</div>
-
-<div *ngIf="description?.errors?.['minlength']" class="alert-danger">
-    min length minLength 10
-</div>
+<br>
 <div class="input-group">
-    <input type="submit" class="btn btn-small btn-primary" (click)="add()">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Description</span>
+      </div>
+      <textarea type="text" aria-label="description" id="description" name="description" formControlName="description"  class="form-control"></textarea>
+   <div  *ngIf="description!.touched && description!.invalid" class="alert alert-danger">
+    description is required
+    <div *ngIf="description!.errors?.['minlength']" class="alert alert-danger">
+        min length minLength 10
+            </div>
+   </div>
+
+   <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">residence</span>
+    </div>
+    <input type="text" aria-label="residence" id="residence" name="residence" formControlName="residence" class="form-control">
+  
+  </div>
+ 
+   
+    </div>
+      <br>
+      <input type="submit" (click)="add()">
+
+</form>
+
 </div>
-
-
-
-</form></div>
