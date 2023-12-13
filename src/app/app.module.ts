@@ -21,7 +21,7 @@ import { ListAppartmentComponent } from './list-appartment/list-appartment.compo
 import { AddApparmentComponent } from './add-apparment/add-apparment.component';
 import { UpdateApparmentComponent } from './update-apparment/update-apparment.component';
 import { AppartmentComponent } from './appartment/appartment.component';
-
+import {HttpClientModule} from '@angular/common/http'
 
 
 @NgModule({
@@ -47,7 +47,8 @@ import { AppartmentComponent } from './appartment/appartment.component';
     FormsModule,
     AppRoutingModule,
     AnnonceModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

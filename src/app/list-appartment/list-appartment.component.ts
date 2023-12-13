@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Appartement } from '../models/appartement';
 import { Residence } from '../models/residence';
 
@@ -7,7 +7,7 @@ import { Residence } from '../models/residence';
   templateUrl: './list-appartment.component.html',
   styleUrls: ['./list-appartment.component.css']
 })
-export class ListAppartmentComponent {
+export class ListAppartmentComponent implements OnInit {
 
   imageUrl:string='/assets/images/'
 appart=null
@@ -49,5 +49,9 @@ let i=this.appartementsList.findIndex(a=>a.id==appar.id)
 this.appartementsList[i]=appar
 console.log("update:"+JSON.stringify(this.appartementsList))
 this.appart=null
+}
+
+ngOnInit(): void {
+  
 }
 }
